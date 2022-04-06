@@ -9,7 +9,8 @@ function Visualizer({array}) {
   return (
     <div>
         {array.map((value, i) => (
-            <div key={i} 
+            <div key={i}
+            className="array-bar" 
                  style={{
                    width: width, 
                    height: `${value*2}px`, 

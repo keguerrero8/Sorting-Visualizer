@@ -10,16 +10,39 @@ function Header() {
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
   
-  const handleNewArray = (event) => {
+  const handleNewArray = () => {
     const newArray = []
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 10; i++) {
         newArray.push(randomInterval(0, 100))
     }
     setArray(newArray)
   } 
 
-  const handleBubbleSort = (event) => {
-    const algoArray = bubbleSort(array)
+  const handleBubbleSort = () => {
+    const { sortedArray, animations } = bubbleSort(array)
+    console.log(animations)
+    const arrayBars = document.getElementsByClassName("array-bar")
+    for (let i = 0; i < animations.length; i++) {
+      //change color when using index 0 and 1
+      const isColorChange = i % 3 != 2
+      if (isColorChange) {
+        const [barOneIdx, barTwoIdx] = animations[i]
+        //when i is 0, 3 turn red, when i is 1, 4 turn turqoiuse, so second animation
+        const color = i % 3 === 0 ? "red" : "turquoise";
+        setTimeout(() => {
+          arrayBars[barOneIdx].style.backgroundColor = color
+          arrayBars[barTwoIdx].style.backgroundColor = color
+        }, i*100)
+      } else {
+        setTimeout(() => {
+          const [barOneHeight, barTwoHeight] = animations[i];
+          const [barOneIdx, barTwoIdx] = animations[i-1]
+          arrayBars[barOneIdx].style.height = `${barOneHeight*2}px`;
+          arrayBars[barTwoIdx].style.height = `${barTwoHeight*2}px`;
+        }, i * 100);
+      }
+
+    }
   } 
 
   const testSort = () => {
