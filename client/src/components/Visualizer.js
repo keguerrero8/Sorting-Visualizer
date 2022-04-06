@@ -14,7 +14,7 @@ function Visualizer({array}) {
                  style={{
                    width: width, 
                    height: `${value*2}px`, 
-                   margin: "1px", 
+                   margin: "2px", 
                    display: "inline-block", 
                    backgroundColor: "turquoise", 
                    paddingTop: "20px", 
