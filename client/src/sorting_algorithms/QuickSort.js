@@ -1,5 +1,5 @@
 
-const bubbleSort = (array) => {
+const quickSort = (array) => {
     console.log(array)
     let isSorted = false
     let end = array.length
@@ -24,7 +24,7 @@ const bubbleSort = (array) => {
     return {array, animations}
 } 
 
-function bubbleSortAnimations (animations, speed, setisDisabled) {
+function quickSortAnimations (animations, speed, setisDisabled) {
     const arrayBars = document.getElementsByClassName("array-bar")
     for (let i = 0; i < animations.length; i++) {
       //change color when using index 0 and 1
@@ -53,4 +53,4 @@ function bubbleSortAnimations (animations, speed, setisDisabled) {
     }
 }
 
-export {bubbleSort, bubbleSortAnimations};
+export {quickSort, quickSortAnimations};

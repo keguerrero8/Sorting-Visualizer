@@ -13,7 +13,7 @@ function Visualizer({array}) {
             className="array-bar" 
                  style={{
                    width: width, 
-                   height: `${value*2}px`, 
+                   height: `${value*4}px`, 
                    margin: "2px", 
                    display: "inline-block", 
                    backgroundColor: "turquoise", 
