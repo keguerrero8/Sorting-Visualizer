@@ -1,28 +1,46 @@
 
-const quickSort = (array) => {
-    console.log(array)
-    let isSorted = false
-    let end = array.length
+const quickSort = (array) => { 
     const animations = []
-    while (!isSorted) {
-        isSorted = true
-        end -= 1
-        for (let j = 0; j < end; j++) {
-            animations.push([j, j+1])
-            animations.push([j, j+1])
-            if (array[j] > array[j+1]) {
-                let temp = array[j]
-                array[j] = array[j+1]
-                array[j+1] = temp
-                isSorted = false
-            }
-            animations.push([array[j], array[j+1]])
-        } 
-    }
-    // console.log(array)
-    // console.log(animations)
+    console.log(array)
+    quickSortHelper(array, 0, array.length - 1, animations)
+    console.log(array)
+    console.log(animations)
     return {array, animations}
 } 
+
+const quickSortHelper = (array, start, end, animations) => {
+    if (start >= end) return
+    const p = partition(array, start, end, animations)
+    quickSortHelper(array, start, p-1, animations)
+    quickSortHelper(array, p+1, end, animations)
+}
+
+const partition = (array, start, end, animations) => {
+    const pivot = end
+    let i = start - 1
+    for (let j = start; j < end; j++) {
+        animations.push([j, pivot])
+        animations.push([j, pivot])
+        if (array[j] <= array[pivot]) {
+            i++
+            let temp = array[i]
+            array[i] = array[j]
+            array[j] = temp
+        }
+        if (i < start) {
+            animations.push([array[i+1], array[j], i+1, j])
+        } else {
+            animations.push([array[i], array[j], i, j])
+        }
+    }
+    animations.push([i+1, pivot])
+    animations.push([i+1, pivot])
+    const pivotSwap = array[i+1]
+    array[i + 1] = array[pivot]
+    array[pivot] = pivotSwap
+    animations.push([array[i+1], array[pivot], i+1, pivot])
+    return i + 1
+}
 
 function quickSortAnimations (animations, speed, setisDisabled) {
     const arrayBars = document.getElementsByClassName("array-bar")
@@ -39,8 +57,7 @@ function quickSortAnimations (animations, speed, setisDisabled) {
         }, i * 1000/speed)
       } else {
         setTimeout(() => {
-          const [barOneHeight, barTwoHeight] = animations[i];
-          const [barOneIdx, barTwoIdx] = animations[i-1]
+          const [barOneHeight, barTwoHeight, barOneIdx, barTwoIdx] = animations[i];
           arrayBars[barOneIdx].style.height = `${barOneHeight*4}px`;
           arrayBars[barTwoIdx].style.height = `${barTwoHeight*4}px`;
         }, i * 1000/speed);

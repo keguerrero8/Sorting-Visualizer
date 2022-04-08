@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { Button, Slider, Box, Typography } from '@mui/material';
 import {bubbleSort, bubbleSortAnimations} from '../sorting_algorithms/BubbleSort';
 import { mergeSort, mergeSortAnimations } from '../sorting_algorithms/MergeSort';
+import { quickSort, quickSortAnimations } from '../sorting_algorithms/QuickSort';
 
 function Header({array, setArray}) {
   const [isDisabled, setisDisabled] = useState(false)
@@ -29,6 +30,12 @@ function Header({array, setArray}) {
     setisDisabled(true)
     const { animations } = mergeSort(array)
     mergeSortAnimations(animations, speed, setisDisabled)
+  }
+  
+  const handleQuickSort = () => {
+    setisDisabled(true)
+    const { animations } = quickSort(array)
+    quickSortAnimations(animations, speed, setisDisabled)
   } 
 
   // const testSort = () => {
@@ -37,7 +44,7 @@ function Header({array, setArray}) {
   //     for (let i = 0; i < 30; i++) {
   //       testArray.push(randomInterval(0, 100))
   //     }
-  //     const {array} = mergeSort(testArray)
+  //     const {array} = quickSort(testArray)
   //     const jsArray = [...testArray].sort((a,b) => a - b)
 
   //     let isEqual = true
@@ -74,7 +81,7 @@ function Header({array, setArray}) {
             <Box sx={{width: "70%", margin: "40px auto", display: "flex", justifyContent: "space-between"}}>
                 <Button onClick={handleBubbleSort}>Bubble Sort</Button>
                 <Button onClick={handleMergeSort}>Merge Sort</Button>
-                <Button >Quick Sort</Button>
+                <Button onClick={handleQuickSort}>Quick Sort</Button>
                 <Button >Heap Sort</Button>
             </Box>
             {/* <Button onClick={testSort}>Test Sort</Button> */}
