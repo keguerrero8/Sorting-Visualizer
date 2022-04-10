@@ -3,6 +3,7 @@ import { Button, Slider, Box, Typography } from '@mui/material';
 import {bubbleSort, bubbleSortAnimations} from '../sorting_algorithms/BubbleSort';
 import { mergeSort, mergeSortAnimations } from '../sorting_algorithms/MergeSort';
 import { quickSort, quickSortAnimations } from '../sorting_algorithms/QuickSort';
+import { heapSort, heapSortAnimations } from '../sorting_algorithms/HeapSort';
 
 function Header({array, setArray}) {
   const [isDisabled, setisDisabled] = useState(false)
@@ -36,6 +37,13 @@ function Header({array, setArray}) {
     setisDisabled(true)
     const { animations } = quickSort(array)
     quickSortAnimations(animations, speed, setisDisabled)
+  }
+
+
+  const handleHeapSort = () => {
+    setisDisabled(true)
+    const { animations } = heapSort(array)
+    heapSortAnimations(animations, speed, setisDisabled)
   } 
 
   // const testSort = () => {
@@ -44,7 +52,7 @@ function Header({array, setArray}) {
   //     for (let i = 0; i < 30; i++) {
   //       testArray.push(randomInterval(0, 100))
   //     }
-  //     const {array} = quickSort(testArray)
+  //     const {array} = heapSort(testArray)
   //     const jsArray = [...testArray].sort((a,b) => a - b)
 
   //     let isEqual = true
@@ -82,7 +90,7 @@ function Header({array, setArray}) {
                 <Button onClick={handleBubbleSort}>Bubble Sort</Button>
                 <Button onClick={handleMergeSort}>Merge Sort</Button>
                 <Button onClick={handleQuickSort}>Quick Sort</Button>
-                <Button >Heap Sort</Button>
+                <Button onClick={handleHeapSort}>Heap Sort</Button>
             </Box>
             {/* <Button onClick={testSort}>Test Sort</Button> */}
       </Box>
