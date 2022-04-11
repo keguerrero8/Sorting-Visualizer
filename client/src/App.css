@@ -3,3 +3,31 @@ body {
   padding: 0%; 
   background-color: #252c33;
 }
+
+.array-bar {
+  width: 0.5%;
+  margin: 0.2%;
+  display: inline-block;
+  background-color:turquoise;
+  padding-top: 20px;
+  color: transparent;
+}
+
+
+@media (max-width: 800px) {
+  .array-bar {
+    margin: 0.1%;
+  }
+}
+
+
+/* style={{
+ //  width: width, 
+  width: "0.5%",
+  height: `${value*4}px`, 
+  margin: "2px", 
+  display: "inline-block", 
+  backgroundColor: "turquoise", 
+  paddingTop: "20px", 
+  color: "transparent"
+ }}  */

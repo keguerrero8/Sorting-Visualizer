@@ -74,8 +74,6 @@ function heapSortAnimations (animations, speed, setisDisabled) {
           const [barOneIdx, barTwoIdx] = animations[i-1]
           arrayBars[barOneIdx].style.height = `${barOneHeight*4}px`;
           arrayBars[barTwoIdx].style.height = `${barTwoHeight*4}px`;
-        //   const [barOneIdx, barOneHeight] = animations[i];
-        //   arrayBars[barOneIdx].style.height = `${barOneHeight*4}px`;
         }, i * 1000/speed);
       }
       if (i === animations.length - 1) {

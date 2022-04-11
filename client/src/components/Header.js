@@ -85,12 +85,12 @@ function Header({array, setArray}) {
                   <Slider value={arraySize} valueLabelDisplay="auto" disabled={isDisabled} onChange={handleSizeSlider}/>
               </Box>
             </Box>
-            <Button sx={{margin: "10px auto"}} onClick={handleNewArray}> Generate New Array</Button>
+            <Button variant="outlined" sx={{margin: "30px auto"}} onClick={handleNewArray}> Generate New Array</Button>
             <Box sx={{width: "70%", margin: "40px auto", display: "flex", justifyContent: "space-between"}}>
-                <Button onClick={handleBubbleSort}>Bubble Sort</Button>
-                <Button onClick={handleMergeSort}>Merge Sort</Button>
-                <Button onClick={handleQuickSort}>Quick Sort</Button>
-                <Button onClick={handleHeapSort}>Heap Sort</Button>
+                <Button variant="outlined" onClick={handleBubbleSort}>Bubble Sort</Button>
+                <Button variant="outlined" onClick={handleMergeSort}>Merge Sort</Button>
+                <Button variant="outlined" onClick={handleQuickSort}>Quick Sort</Button>
+                <Button variant="outlined" onClick={handleHeapSort}>Heap Sort</Button>
             </Box>
             {/* <Button onClick={testSort}>Test Sort</Button> */}
       </Box>
