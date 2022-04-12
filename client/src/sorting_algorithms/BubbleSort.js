@@ -1,6 +1,5 @@
 
 const bubbleSort = (array) => {
-    console.log(array)
     let isSorted = false
     let end = array.length
     const animations = []
@@ -19,8 +18,6 @@ const bubbleSort = (array) => {
             animations.push([array[j], array[j+1]])
         } 
     }
-    // console.log(array)
-    // console.log(animations)
     return {array, animations}
 } 
 

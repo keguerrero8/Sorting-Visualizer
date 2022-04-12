@@ -1,14 +1,16 @@
 import React from 'react'
 import "../App.css"
+import { useSelector } from "react-redux";
 
-function Visualizer({array}) {
+function Visualizer() {
+  const reduxArray = useSelector(state => state.array.entities)
 
   return (
     <div style={{width: "100%"}}>
-        {array.map((value, i) => (
+        {reduxArray.map((value, i) => (
             <div key={i}
             className="array-bar"
-            style={{height: `${value*4}px`, width: `${array.length > 50 ? "0.5%" : "0.9%"}`}}
+            style={{height: `${value*4}px`, width: `${reduxArray.length > 50 ? "0.5%" : "0.9%"}`}}
               >
                 {value}
             </div>

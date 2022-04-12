@@ -1,10 +1,12 @@
 import './App.css';
 import Header from './components/Header';
 import Visualizer from './components/Visualizer';
-import React, {useState, useEffect} from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from "react-redux"
+import { arrayGenerated } from './reducers/arraySlice';
 
 function App() {
-  const [array, setArray] = useState([])
+  const dispatch = useDispatch()
 
   const randomInterval = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min)
@@ -15,14 +17,14 @@ function App() {
     for (let i = 0; i < 50; i++) {
         newArray.push(randomInterval(0, 100))
     }
-    setArray(newArray)
-  }, [])
+    dispatch(arrayGenerated(newArray))
+  }, [dispatch])
 
   return (
     <div className="App" style={{textAlign: "center"}}>
-      <h1 style={{color: "white"}} >Sorting Visualizer</h1>
-      <Header array={array} setArray={setArray}/>
-      <Visualizer array={array}/>
+      <h1 style={{color: "white", margin: "50px auto"}} >Sorting Visualizer</h1>
+      <Header />
+      <Visualizer />
     </div>
   );
 }

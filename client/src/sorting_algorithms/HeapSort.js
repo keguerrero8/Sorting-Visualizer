@@ -1,10 +1,7 @@
 const heapSort = (array) => {
     const animations = []
-    console.log(array)
     heapify(array, animations)
     deleteSort(array, animations)
-    console.log(array)
-    console.log(animations)
     return {array, animations}
 } 
 

@@ -5,11 +5,16 @@ import { mergeSort, mergeSortAnimations } from '../sorting_algorithms/MergeSort'
 import { quickSort, quickSortAnimations } from '../sorting_algorithms/QuickSort';
 import { heapSort, heapSortAnimations } from '../sorting_algorithms/HeapSort';
 import { insertionSort, insertionSortAnimations } from '../sorting_algorithms/InsertionSort';
+import { useDispatch, useSelector } from "react-redux"
+import { arrayGenerated, arraySizeChange } from '../reducers/arraySlice';
 
-function Header({array, setArray}) {
+function Header() {
   const [isDisabled, setisDisabled] = useState(false)
-  const [arraySize, setArraySize] = useState(50)
   const [speed, setSpeed] = useState(50)
+  const dispatch = useDispatch()
+  const array = useSelector(state => state.array.entities)
+  const arraySize = useSelector(state => state.array.size)
+  const copyArray = [...array]
 
   const randomInterval = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min)
@@ -19,38 +24,38 @@ function Header({array, setArray}) {
     for (let i = 0; i < arraySize; i++) {
         newArray.push(randomInterval(0, 100))
     }
-    setArray(newArray)
+    dispatch(arrayGenerated(newArray))
   } 
 
   const handleBubbleSort = () => {
     setisDisabled(true)
-    const { animations } = bubbleSort(array)
+    const { animations } = bubbleSort(copyArray)
     bubbleSortAnimations(animations, speed, setisDisabled)
   } 
 
   const handleMergeSort = () => {
     setisDisabled(true)
-    const { animations } = mergeSort(array)
+    const { animations } = mergeSort(copyArray)
     mergeSortAnimations(animations, speed, setisDisabled)
   }
   
   const handleQuickSort = () => {
     setisDisabled(true)
-    const { animations } = quickSort(array)
+    const { animations } = quickSort(copyArray)
     quickSortAnimations(animations, speed, setisDisabled)
   }
 
 
   const handleHeapSort = () => {
     setisDisabled(true)
-    const { animations } = heapSort(array)
+    const { animations } = heapSort(copyArray)
     heapSortAnimations(animations, speed, setisDisabled)
   } 
 
 
   const handleInsertionSort = () => {
     setisDisabled(true)
-    const { animations } = insertionSort(array)
+    const { animations } = insertionSort(copyArray)
     insertionSortAnimations(animations, speed, setisDisabled)
   } 
   
@@ -74,7 +79,7 @@ function Header({array, setArray}) {
   // }
 
   function handleSizeSlider (event) {
-    setArraySize(event.target.value)
+    dispatch(arraySizeChange(event.target.value))
   }
 
   function handleSpeedSlider (event) {
