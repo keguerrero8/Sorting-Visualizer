@@ -1,10 +1,7 @@
 
 const quickSort = (array) => { 
     const animations = []
-    console.log(array)
     quickSortHelper(array, 0, array.length - 1, animations)
-    console.log(array)
-    console.log(animations)
     return {array, animations}
 } 
 

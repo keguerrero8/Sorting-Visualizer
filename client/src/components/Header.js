@@ -4,10 +4,11 @@ import {bubbleSort, bubbleSortAnimations} from '../sorting_algorithms/BubbleSort
 import { mergeSort, mergeSortAnimations } from '../sorting_algorithms/MergeSort';
 import { quickSort, quickSortAnimations } from '../sorting_algorithms/QuickSort';
 import { heapSort, heapSortAnimations } from '../sorting_algorithms/HeapSort';
+import { insertionSort, insertionSortAnimations } from '../sorting_algorithms/InsertionSort';
 
 function Header({array, setArray}) {
   const [isDisabled, setisDisabled] = useState(false)
-  const [arraySize, setArraySize] = useState(20)
+  const [arraySize, setArraySize] = useState(50)
   const [speed, setSpeed] = useState(50)
 
   const randomInterval = (min, max) => {
@@ -46,13 +47,20 @@ function Header({array, setArray}) {
     heapSortAnimations(animations, speed, setisDisabled)
   } 
 
+
+  const handleInsertionSort = () => {
+    setisDisabled(true)
+    const { animations } = insertionSort(array)
+    insertionSortAnimations(animations, speed, setisDisabled)
+  } 
+  
   // const testSort = () => {
   //   for (let i = 0; i < 1000; i++) {
   //     const testArray = []
   //     for (let i = 0; i < 30; i++) {
   //       testArray.push(randomInterval(0, 100))
   //     }
-  //     const {array} = heapSort(testArray)
+  //     const {array} = insertionSort(testArray)
   //     const jsArray = [...testArray].sort((a,b) => a - b)
 
   //     let isEqual = true
@@ -74,7 +82,7 @@ function Header({array, setArray}) {
   }
 
   return (
-      <Box sx={{width: "95%", margin: "auto"}} id="mainDiv">
+      <Box sx={{width: "100%", margin: "auto"}} id="mainDiv">
             <Box sx={{width: "100%", margin: "auto", display: "flex"}}>
               <Box sx={{width: "30%", margin: "auto"}} >
                   <Typography color="white">Speed</Typography>
@@ -86,11 +94,12 @@ function Header({array, setArray}) {
               </Box>
             </Box>
             <Button variant="outlined" sx={{margin: "30px auto"}} onClick={handleNewArray}> Generate New Array</Button>
-            <Box sx={{width: "70%", margin: "40px auto", display: "flex", justifyContent: "space-between"}}>
-                <Button variant="outlined" onClick={handleBubbleSort}>Bubble Sort</Button>
-                <Button variant="outlined" onClick={handleMergeSort}>Merge Sort</Button>
-                <Button variant="outlined" onClick={handleQuickSort}>Quick Sort</Button>
-                <Button variant="outlined" onClick={handleHeapSort}>Heap Sort</Button>
+            <Box sx={{width: "80%", margin: "40px auto", display: "flex", justifyContent: "space-between"}}>
+                <Button size="small" variant="outlined" onClick={handleBubbleSort}>Bubble Sort</Button>
+                <Button size="small" variant="outlined" onClick={handleInsertionSort}>Insertion Sort</Button>
+                <Button size="small" variant="outlined" onClick={handleMergeSort}>Merge Sort</Button>
+                <Button size="small" variant="outlined" onClick={handleQuickSort}>Quick Sort</Button>
+                <Button size="small" variant="outlined" onClick={handleHeapSort}>Heap Sort</Button>
             </Box>
             {/* <Button onClick={testSort}>Test Sort</Button> */}
       </Box>
